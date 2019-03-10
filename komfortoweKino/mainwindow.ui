@@ -308,7 +308,7 @@ p, li { white-space: pre-wrap; }
    <widget class="QLabel" name="label_8">
     <property name="geometry">
      <rect>
-      <x>940</x>
+      <x>820</x>
       <y>370</y>
       <width>131</width>
       <height>20</height>
@@ -324,9 +324,9 @@ p, li { white-space: pre-wrap; }
    <widget class="QWidget" name="gridLayoutWidget">
     <property name="geometry">
      <rect>
-      <x>859</x>
+      <x>769</x>
       <y>409</y>
-      <width>291</width>
+      <width>231</width>
       <height>171</height>
      </rect>
     </property>
@@ -343,7 +343,7 @@ p, li { white-space: pre-wrap; }
         <string>Liczba wentylatorów</string>
        </property>
        <property name="alignment">
-        <set>Qt::AlignCenter</set>
+        <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
        </property>
       </widget>
      </item>
@@ -392,6 +392,67 @@ p, li { white-space: pre-wrap; }
      </item>
     </layout>
    </widget>
+   <widget class="QWidget" name="verticalLayoutWidget_3">
+    <property name="geometry">
+     <rect>
+      <x>1030</x>
+      <y>379</y>
+      <width>160</width>
+      <height>201</height>
+     </rect>
+    </property>
+    <layout class="QVBoxLayout" name="verticalLayout_3">
+     <item>
+      <widget class="QLabel" name="label_12">
+       <property name="text">
+        <string>Warunki początkowe</string>
+       </property>
+       <property name="alignment">
+        <set>Qt::AlignHCenter|Qt::AlignTop</set>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QLabel" name="label_15">
+       <property name="text">
+        <string>Temperatura</string>
+       </property>
+       <property name="alignment">
+        <set>Qt::AlignBottom|Qt::AlignHCenter</set>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QLineEdit" name="lineEdit_6"/>
+     </item>
+     <item>
+      <widget class="QLabel" name="label_13">
+       <property name="text">
+        <string>Wilgotność</string>
+       </property>
+       <property name="alignment">
+        <set>Qt::AlignBottom|Qt::AlignHCenter</set>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QLineEdit" name="lineEdit_7"/>
+     </item>
+     <item>
+      <widget class="QLabel" name="label_14">
+       <property name="text">
+        <string>Stężenie CO2</string>
+       </property>
+       <property name="alignment">
+        <set>Qt::AlignBottom|Qt::AlignHCenter</set>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QLineEdit" name="lineEdit_8"/>
+     </item>
+    </layout>
+   </widget>
    <zorder>textBrowser</zorder>
    <zorder>pushButton</zorder>
    <zorder>widget</zorder>
@@ -406,6 +467,7 @@ p, li { white-space: pre-wrap; }
    <zorder>label_7</zorder>
    <zorder>label_8</zorder>
    <zorder>gridLayoutWidget</zorder>
+   <zorder>verticalLayoutWidget_3</zorder>
   </widget>
   <widget class="QMenuBar" name="menuBar">
    <property name="geometry">
