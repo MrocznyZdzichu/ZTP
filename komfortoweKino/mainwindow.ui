@@ -396,9 +396,9 @@ p, li { white-space: pre-wrap; }
     <property name="geometry">
      <rect>
       <x>1030</x>
-      <y>379</y>
+      <y>359</y>
       <width>160</width>
-      <height>201</height>
+      <height>221</height>
      </rect>
     </property>
     <layout class="QVBoxLayout" name="verticalLayout_3">
@@ -450,6 +450,19 @@ p, li { white-space: pre-wrap; }
      </item>
      <item>
       <widget class="QLineEdit" name="lineEdit_8"/>
+     </item>
+     <item>
+      <widget class="QLabel" name="label_16">
+       <property name="text">
+        <string>Objętość pomieszczenia</string>
+       </property>
+       <property name="alignment">
+        <set>Qt::AlignBottom|Qt::AlignHCenter</set>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QLineEdit" name="lineEdit_9"/>
      </item>
     </layout>
    </widget>
