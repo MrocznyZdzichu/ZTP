@@ -10,5 +10,6 @@ int main(int argc, char *argv[])
     appWindow = NULL;
 
     Interface::showWindow();
+
     return a.exec();
 }
