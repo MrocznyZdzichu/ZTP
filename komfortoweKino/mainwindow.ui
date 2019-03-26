@@ -69,7 +69,6 @@ p, li { white-space: pre-wrap; }
       <height>300</height>
      </rect>
     </property>
-    <zorder>label_7</zorder>
    </widget>
    <widget class="QCustomPlot" name="widget_3" native="true">
     <property name="geometry">
@@ -139,13 +138,13 @@ p, li { white-space: pre-wrap; }
      <number>2</number>
     </property>
     <attribute name="horizontalHeaderVisible">
-     <bool>true</bool>
+     <bool>false</bool>
     </attribute>
     <attribute name="horizontalHeaderCascadingSectionResizes">
      <bool>false</bool>
     </attribute>
     <attribute name="verticalHeaderVisible">
-     <bool>true</bool>
+     <bool>false</bool>
     </attribute>
     <attribute name="verticalHeaderCascadingSectionResizes">
      <bool>false</bool>
@@ -212,7 +211,7 @@ p, li { white-space: pre-wrap; }
       <widget class="QComboBox" name="comboBox">
        <item>
         <property name="text">
-         <string>Chłodzenie</string>
+         <string>Chlodzenie</string>
         </property>
        </item>
        <item>
@@ -258,9 +257,9 @@ p, li { white-space: pre-wrap; }
     <property name="geometry">
      <rect>
       <x>520</x>
-      <y>360</y>
+      <y>399</y>
       <width>161</width>
-      <height>80</height>
+      <height>41</height>
      </rect>
     </property>
     <layout class="QVBoxLayout" name="verticalLayout_2">
@@ -309,7 +308,7 @@ p, li { white-space: pre-wrap; }
     <property name="geometry">
      <rect>
       <x>820</x>
-      <y>370</y>
+      <y>450</y>
       <width>131</width>
       <height>20</height>
      </rect>
@@ -324,10 +323,10 @@ p, li { white-space: pre-wrap; }
    <widget class="QWidget" name="gridLayoutWidget">
     <property name="geometry">
      <rect>
-      <x>769</x>
-      <y>409</y>
-      <width>231</width>
-      <height>171</height>
+      <x>753</x>
+      <y>479</y>
+      <width>271</width>
+      <height>71</height>
      </rect>
     </property>
     <layout class="QGridLayout" name="gridLayout">
@@ -337,30 +336,10 @@ p, li { white-space: pre-wrap; }
      <property name="spacing">
       <number>25</number>
      </property>
-     <item row="2" column="0">
-      <widget class="QLabel" name="label_11">
-       <property name="text">
-        <string>Liczba wentylatorów</string>
-       </property>
-       <property name="alignment">
-        <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
-       </property>
-      </widget>
-     </item>
-     <item row="1" column="1">
+     <item row="1" column="2">
       <widget class="QLineEdit" name="lineEdit_4"/>
      </item>
-     <item row="0" column="0">
-      <widget class="QLabel" name="label_9">
-       <property name="text">
-        <string>Temperatura</string>
-       </property>
-       <property name="alignment">
-        <set>Qt::AlignBottom|Qt::AlignHCenter</set>
-       </property>
-      </widget>
-     </item>
-     <item row="0" column="1">
+     <item row="0" column="2">
       <widget class="QLabel" name="label_10">
        <property name="text">
         <string>Wilgotność</string>
@@ -370,27 +349,40 @@ p, li { white-space: pre-wrap; }
        </property>
       </widget>
      </item>
-     <item row="1" column="0">
+     <item row="1" column="1">
       <widget class="QLineEdit" name="lineEdit_3"/>
      </item>
-     <item row="3" column="0">
+     <item row="0" column="1">
+      <widget class="QLabel" name="label_9">
+       <property name="text">
+        <string>Temperatura</string>
+       </property>
+       <property name="alignment">
+        <set>Qt::AlignBottom|Qt::AlignHCenter</set>
+       </property>
+      </widget>
+     </item>
+     <item row="0" column="0">
+      <widget class="QLabel" name="label_11">
+       <property name="text">
+        <string>Liczba 
+wentylatorów</string>
+       </property>
+       <property name="alignment">
+        <set>Qt::AlignBottom|Qt::AlignHCenter</set>
+       </property>
+      </widget>
+     </item>
+     <item row="1" column="0">
       <widget class="QLineEdit" name="lineEdit_5"/>
      </item>
-     <item row="2" column="1">
-      <widget class="QPushButton" name="pushButton_6">
-       <property name="text">
-        <string>Dodaj wentylator</string>
-       </property>
-      </widget>
-     </item>
-     <item row="3" column="1">
-      <widget class="QPushButton" name="pushButton_7">
-       <property name="text">
-        <string>Usuń wentylator</string>
-       </property>
-      </widget>
-     </item>
     </layout>
+    <zorder>lineEdit_4</zorder>
+    <zorder>label_9</zorder>
+    <zorder>lineEdit_3</zorder>
+    <zorder>label_10</zorder>
+    <zorder>label_11</zorder>
+    <zorder>lineEdit_5</zorder>
    </widget>
    <widget class="QWidget" name="verticalLayoutWidget_3">
     <property name="geometry">
@@ -466,21 +458,6 @@ p, li { white-space: pre-wrap; }
      </item>
     </layout>
    </widget>
-   <zorder>textBrowser</zorder>
-   <zorder>pushButton</zorder>
-   <zorder>widget</zorder>
-   <zorder>widget_2</zorder>
-   <zorder>widget_3</zorder>
-   <zorder>horizontalLayoutWidget</zorder>
-   <zorder>tableWidget</zorder>
-   <zorder>label_4</zorder>
-   <zorder>verticalLayoutWidget</zorder>
-   <zorder>verticalLayoutWidget_2</zorder>
-   <zorder>horizontalLayoutWidget_2</zorder>
-   <zorder>label_7</zorder>
-   <zorder>label_8</zorder>
-   <zorder>gridLayoutWidget</zorder>
-   <zorder>verticalLayoutWidget_3</zorder>
   </widget>
   <widget class="QMenuBar" name="menuBar">
    <property name="geometry">

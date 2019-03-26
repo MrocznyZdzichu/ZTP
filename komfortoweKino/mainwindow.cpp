@@ -1,5 +1,6 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
+#include "Interface.h"
 
 #define tempPlot this->ui->widget
 #define humPlot this->ui->widget_2
@@ -19,6 +20,13 @@ MainWindow::MainWindow(QWidget *parent) :
     table->setColumnCount(2);
 
     this->ui->lineEdit_2->setText("0");
+    this->ui->lineEdit_3->setText("0");
+    this->ui->lineEdit_4->setText("0");
+    this->ui->lineEdit_5->setText("0");
+    this->ui->lineEdit_6->setText("0");
+    this->ui->lineEdit_7->setText("0");
+    this->ui->lineEdit_8->setText("0");
+    this->ui->lineEdit_9->setText("0");
     this->ui->pushButton_4->setEnabled(0);
 }
 
@@ -138,10 +146,23 @@ void MainWindow::on_pushButton_2_clicked()
 
 bool MainWindow::isTextNumeric(QString text)
 {
+    int i = 0;
+    int dotCount = 0;
     for (auto character : text)
     {
-        if (!character.isDigit())
+        if (i == 0 && (!character.isDigit() && character != '-'))
             return false;
+        else
+        {
+            if (!character.isDigit() && character != '.')
+                return false;
+
+            if (character == '.')
+                dotCount++;
+            if (dotCount > 1)
+                return false;
+        }
+        i++;
     }
     return true;
 }
@@ -184,4 +205,130 @@ void MainWindow::on_pushButton_4_clicked()
 
     if (this->ui->lineEdit_2->text() == "0")
         this->ui->pushButton_4->setEnabled(0);
+}
+
+void MainWindow::on_pushButton_clicked()
+{
+    if (!this->allFieldsFilled())
+    {
+        textBox->setText("Prosze uzupełnić wszystkie pola");
+        return;
+    }
+
+    InputData simulationParameters = Interface::getInputData();
+}
+
+bool MainWindow::allFieldsFilled()
+{
+    if     (this->ui->lineEdit_3->text() == "" ||
+            this->ui->lineEdit_4->text() == "" ||
+            this->ui->lineEdit_5->text() == "" ||
+            this->ui->lineEdit_6->text() == "" ||
+            this->ui->lineEdit_7->text() == "" ||
+            this->ui->lineEdit_8->text() == "")
+        return false;
+    return true;
+}
+
+void MainWindow::on_lineEdit_5_editingFinished()
+{
+    if (!this->isTextNumeric(this->ui->lineEdit_5->text()))
+        this->ui->lineEdit_5->setText("0");
+}
+
+void MainWindow::on_lineEdit_3_editingFinished()
+{
+    if (!this->isTextNumeric(this->ui->lineEdit_3->text()))
+        this->ui->lineEdit_3->setText("0");
+}
+
+void MainWindow::on_lineEdit_4_editingFinished()
+{
+    if (!this->isTextNumeric(this->ui->lineEdit_4->text()))
+        this->ui->lineEdit_4->setText("0");
+}
+
+void MainWindow::on_lineEdit_9_editingFinished()
+{
+    if (!this->isTextNumeric(this->ui->lineEdit_9->text()))
+        this->ui->lineEdit_9->setText("0");
+}
+
+void MainWindow::on_lineEdit_8_editingFinished()
+{
+    if (!this->isTextNumeric(this->ui->lineEdit_8->text()))
+        this->ui->lineEdit_8->setText("0");
+}
+
+void MainWindow::on_lineEdit_7_editingFinished()
+{
+    if (!this->isTextNumeric(this->ui->lineEdit_7->text()))
+        this->ui->lineEdit_7->setText("0");
+}
+
+void MainWindow::on_lineEdit_6_editingFinished()
+{
+    if (!this->isTextNumeric(this->ui->lineEdit_6->text()))
+        this->ui->lineEdit_6->setText("0");
+}
+
+int MainWindow::getPeopleCount()
+{
+    return this->ui->lineEdit_2->text().toInt();
+}
+
+int MainWindow::getVentsCount()
+{
+    return this->ui->lineEdit_5->text().toInt();
+}
+
+double MainWindow::getCubature()
+{
+    return this->ui->lineEdit_9->text().toDouble();
+}
+
+double MainWindow::getOuterTemperature()
+{
+    return this->ui->lineEdit_3->text().toDouble();
+}
+
+double MainWindow::getOuterHumidity()
+{
+    return this->ui->lineEdit_4->text().toDouble();
+}
+
+double MainWindow::getStartTemperature()
+{
+    return this->ui->lineEdit_6->text().toDouble();
+}
+
+double MainWindow::getStartHumidity()
+{
+    return this->ui->lineEdit_7->text().toDouble();
+}
+
+double MainWindow::getStartCO2()
+{
+    return this->ui->lineEdit_8->text().toDouble();
+}
+
+double* MainWindow::getACPowers()
+{
+    double* acPowers = new double[table->rowCount()];
+    for (int i = 0; i < table->rowCount(); i++)
+        acPowers[i] = table->item(i, 1)->text().toDouble();
+    return acPowers;
+}
+
+std::string* MainWindow::getACModes()
+{
+    std::string* acModes = new std::string[table->rowCount()];
+    for (int i = 0; i < table->rowCount(); i++)
+        acModes[i] = table->item(i, 0)->text().toStdString();
+    return acModes;
+}
+
+int MainWindow::getACCount()
+{
+    return this->ui->tableWidget->rowCount();
 }

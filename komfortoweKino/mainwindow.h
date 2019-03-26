@@ -27,22 +27,51 @@ private slots:
 
     void on_pushButton_4_clicked();
 
+    void on_pushButton_clicked();
+
+    void on_lineEdit_5_editingFinished();
+
+    void on_lineEdit_3_editingFinished();
+
+    void on_lineEdit_4_editingFinished();
+
+    void on_lineEdit_9_editingFinished();
+
+    void on_lineEdit_8_editingFinished();
+
+    void on_lineEdit_7_editingFinished();
+
+    void on_lineEdit_6_editingFinished();
+
 private:
     Ui::MainWindow *ui;
-    void plotTemperature(QVector<double> xData,
-                         QVector<double> yData);
+    void            plotTemperature(QVector<double> xData,
+                                    QVector<double> yData);
 
-    void plotHumidity(QVector<double> xData,
-                      QVector<double> yData);
+    void            plotHumidity(QVector<double> xData,
+                                 QVector<double> yData);
 
-    void plotCO2(QVector<double> xData,
-                 QVector<double> yData);
+    void            plotCO2(QVector<double> xData,
+                            QVector<double> yData);
 
-    double* axisLimits(QVector<double> xData,
-                        QVector<double> yData);
+    double*         axisLimits(QVector<double> xData,
+                               QVector<double> yData);
 
-    void printComm(QString text);
-    bool isTextNumeric(QString text);
+    void            printComm(QString text);
+    bool            isTextNumeric(QString text);
+    bool            allFieldsFilled();
+    int             getPeopleCount();
+    int             getVentsCount();
+    double          getCubature();
+    double          getOuterTemperature();
+    double          getOuterHumidity();
+    double          getStartTemperature();
+    double          getStartHumidity();
+    double          getStartCO2();
+    double*         getACPowers();
+    std::string*    getACModes();
+    int             getACCount();
+
 };
 
 #endif // MAINWINDOW_H

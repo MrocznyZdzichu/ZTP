@@ -27,9 +27,29 @@ void Interface::setWindow(MainWindow *appWindow)
     Interface::appWindow = appWindow;
 }
 
-void Interface::getInputData()
+InputData Interface::getInputData()
 {
+    InputData Parameters;
+    Parameters.peopleCount = appWindow->getPeopleCount();
+    Parameters.ventCount = appWindow->getVentsCount();
+    Parameters.cubature = appWindow->getCubature();
+    Parameters.outerTemperature = appWindow->getOuterTemperature();
+    Parameters.outerHumidity = appWindow->getOuterHumidity();
+    Parameters.startTemperature = appWindow->getStartTemperature();
+    Parameters.startHumidity = appWindow->getStartHumidity();
+    Parameters.startCO2 = appWindow->getStartCO2();
 
+    int acCount = appWindow->getACCount();
+
+    double* acPowers = appWindow->getACPowers();
+    for (int i = 0; i < acCount; i++)
+        Parameters.unitPowers.push_back(acPowers[i]);
+
+    std::string* acModes = appWindow->getACModes();
+    for (int i = 0; i < acCount; i++)
+        Parameters.unitModes.push_back(acModes[i]);
+
+    return Parameters;
 }
 
 void Interface::plotResults(QVector<double> xData,
