@@ -46,3 +46,9 @@ void Interface::plotResults(QVector<double> xData,
         break;
     }
 }
+
+void Interface::printComm(std::string text)
+{
+    QString QText = QString::fromStdString(text);
+    Interface::appWindow->printComm(QText);
+}

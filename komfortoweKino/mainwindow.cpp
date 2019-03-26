@@ -4,6 +4,7 @@
 #define tempPlot this->ui->widget
 #define humPlot this->ui->widget_2
 #define co2Plot this->ui->widget_3
+#define textBox this->ui->textBrowser
 
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
@@ -75,4 +76,10 @@ void MainWindow::plotCO2(QVector<double> xData, QVector<double> yData)
 
     co2Plot->graph(0)->setData(xData, yData);
     co2Plot->replot();
+}
+
+void MainWindow::printComm(QString text)
+{
+    textBox->clear();
+    textBox->setText(text);
 }

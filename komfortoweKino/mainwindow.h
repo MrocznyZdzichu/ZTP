@@ -28,6 +28,8 @@ private:
 
     double* axisLimits(QVector<double> xData,
                         QVector<double> yData);
+
+    void printComm(QString text);
 };
 
 #endif // MAINWINDOW_H

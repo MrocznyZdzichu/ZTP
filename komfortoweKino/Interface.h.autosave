@@ -3,6 +3,8 @@
 
 #include "mainwindow.h"
 #include <QVector>
+
+struct InputData;
 class Interface
 {
 //-----------------attributes--------------------
@@ -22,6 +24,11 @@ private:
     Interface();
     Interface(const Interface&);
 
+};
+
+struct InputData
+{
+    
 };
 
 #endif // INTERFACE_H
