@@ -17,7 +17,6 @@ MainWindow::MainWindow(QWidget *parent) :
     this->ui->pushButton_3->setDisabled(1);
     table->setRowCount(0);
     table->setColumnCount(2);
-
 }
 
 MainWindow::~MainWindow()
@@ -115,13 +114,19 @@ void MainWindow::on_pushButton_2_clicked()
     }
 
     textBox->clear();
+
+    QTableWidgetItem *powerItem = new QTableWidgetItem(power);
+    powerItem->setFlags(powerItem->flags() ^ Qt::ItemIsEditable);
     powerEdit->clear();
 
-    int newRowNumber = table->rowCount();
+    QTableWidgetItem* modeItem = new QTableWidgetItem(mode);
+    modeItem->setFlags(modeItem->flags() ^ Qt::ItemIsEditable);
 
+    int newRowNumber = table->rowCount();
     table->setRowCount(newRowNumber+1);
-    table->setItem(newRowNumber, 0, new QTableWidgetItem(mode));
-    table->setItem(newRowNumber, 1, new QTableWidgetItem(power));
+
+    table->setItem(newRowNumber, 0, modeItem);
+    table->setItem(newRowNumber, 1, powerItem);
 
     if (!this->ui->pushButton_3->isEnabled())
         this->ui->pushButton_3->setEnabled(1);
@@ -136,4 +141,16 @@ bool MainWindow::isTextNumeric(QString text)
             return false;
     }
     return true;
+}
+
+void MainWindow::on_pushButton_3_clicked()
+{
+    if (!table->selectedItems().size())
+        return;
+
+    int selectedRow = table->selectedItems()[0]->row();
+    table->removeRow(selectedRow);
+
+    if (!table->rowCount())
+        this->ui->pushButton_3->setEnabled(0);
 }
