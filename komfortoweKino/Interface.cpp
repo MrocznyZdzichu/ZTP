@@ -27,6 +27,11 @@ void Interface::setWindow(MainWindow *appWindow)
     Interface::appWindow = appWindow;
 }
 
+void Interface::getInputData()
+{
+
+}
+
 void Interface::plotResults(QVector<double> xData,
                             QVector<double> yData,
                             int plotType)

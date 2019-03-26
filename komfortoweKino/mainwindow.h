@@ -3,6 +3,7 @@
 
 #include <QMainWindow>
 #include "qcustomplot.h"
+
 namespace Ui {
 class MainWindow;
 }
@@ -15,6 +16,9 @@ public:
     explicit MainWindow(QWidget *parent = 0);
     ~MainWindow();
     
+private slots:
+    void on_pushButton_2_clicked();
+
 private:
     Ui::MainWindow *ui;
     void plotTemperature(QVector<double> xData,
@@ -30,6 +34,7 @@ private:
                         QVector<double> yData);
 
     void printComm(QString text);
+    bool isTextNumeric(QString text);
 };
 
 #endif // MAINWINDOW_H

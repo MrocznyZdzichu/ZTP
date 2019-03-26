@@ -3,6 +3,8 @@
 
 #include "mainwindow.h"
 #include <QVector>
+
+struct InputData;
 class Interface
 {
 //-----------------attributes--------------------
@@ -14,6 +16,7 @@ public:
     static Interface getInstance();
     static void setWindow(MainWindow* appWindow);
     static void showWindow();
+    static void getInputData();
     static void plotResults(QVector<double> xData,
                             QVector<double> yData,
                             int plotType);
@@ -21,6 +24,11 @@ public:
 private:
     Interface();
     Interface(const Interface&);
+
+};
+
+struct InputData
+{
 
 };
 

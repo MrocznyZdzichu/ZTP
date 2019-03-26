@@ -5,12 +5,19 @@
 #define humPlot this->ui->widget_2
 #define co2Plot this->ui->widget_3
 #define textBox this->ui->textBrowser
+#define table this->ui->tableWidget
+#define powerEdit this->ui->lineEdit
 
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
     ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
+
+    this->ui->pushButton_3->setDisabled(1);
+    table->setRowCount(0);
+    table->setColumnCount(2);
+
 }
 
 MainWindow::~MainWindow()
@@ -82,4 +89,51 @@ void MainWindow::printComm(QString text)
 {
     textBox->clear();
     textBox->setText(text);
+}
+
+void MainWindow::on_pushButton_2_clicked()
+{
+    QString power = powerEdit->text();
+    QString mode = this->ui->comboBox->currentText();
+
+    if (power == "")
+    {
+        textBox->setText("Proszę podać moc jednostki");
+        return;
+    }
+
+    if (!this->isTextNumeric(power) && power[0] != '-')
+    {
+        textBox->setText("Moc jednostki musi być numeryczna");
+        return;
+    }
+
+    if (power.toDouble() <= 0)
+    {
+        textBox->setText("Moc jednostko powinna być dodatnia");
+        return;
+    }
+
+    textBox->clear();
+    powerEdit->clear();
+
+    int newRowNumber = table->rowCount();
+
+    table->setRowCount(newRowNumber+1);
+    table->setItem(newRowNumber, 0, new QTableWidgetItem(mode));
+    table->setItem(newRowNumber, 1, new QTableWidgetItem(power));
+
+    if (!this->ui->pushButton_3->isEnabled())
+        this->ui->pushButton_3->setEnabled(1);
+
+}
+
+bool MainWindow::isTextNumeric(QString text)
+{
+    for (auto character : text)
+    {
+        if (!character.isDigit())
+            return false;
+    }
+    return true;
 }
