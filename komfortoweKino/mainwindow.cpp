@@ -17,6 +17,9 @@ MainWindow::MainWindow(QWidget *parent) :
     this->ui->pushButton_3->setDisabled(1);
     table->setRowCount(0);
     table->setColumnCount(2);
+
+    this->ui->lineEdit_2->setText("0");
+    this->ui->pushButton_4->setEnabled(0);
 }
 
 MainWindow::~MainWindow()
@@ -153,4 +156,32 @@ void MainWindow::on_pushButton_3_clicked()
 
     if (!table->rowCount())
         this->ui->pushButton_3->setEnabled(0);
+}
+
+void MainWindow::on_lineEdit_2_editingFinished()
+{
+    if (!this->isTextNumeric(this->ui->lineEdit_2->text()))
+        this->ui->lineEdit_2->setText("0");
+}
+
+void MainWindow::on_pushButton_5_clicked()
+{
+    int peopleCount = this->ui->lineEdit_2->text().toInt();
+    peopleCount++;
+    std::string text = std::to_string(peopleCount);
+    this->ui->lineEdit_2->setText(QString::fromStdString(text));
+
+    if (!this->ui->pushButton_4->isEnabled())
+        this->ui->pushButton_4->setEnabled(1);
+}
+
+void MainWindow::on_pushButton_4_clicked()
+{
+    int peopleCount = this->ui->lineEdit_2->text().toInt();
+    peopleCount--;
+    std::string text = std::to_string(peopleCount);
+    this->ui->lineEdit_2->setText(QString::fromStdString(text));
+
+    if (this->ui->lineEdit_2->text() == "0")
+        this->ui->pushButton_4->setEnabled(0);
 }
