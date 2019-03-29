@@ -2,9 +2,9 @@
 #define INTERFACE_H
 
 #include "mainwindow.h"
+#include "inputdata.h"
 #include <QVector>
 
-struct InputData;
 class Interface
 {
 //-----------------attributes--------------------
@@ -27,18 +27,6 @@ private:
 
 };
 
-struct InputData
-{
-    int                         peopleCount;
-    int                         ventCount;
-    std::vector<std::string>    unitModes;
-    std::vector<double>         unitPowers;
-    double                      cubature;
-    double                      outerTemperature;
-    double                      outerHumidity;
-    double                      startTemperature;
-    double                      startHumidity;
-    double                      startCO2;
-};
+
 
 #endif // INTERFACE_H

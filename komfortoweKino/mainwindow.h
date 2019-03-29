@@ -4,6 +4,8 @@
 #include <QMainWindow>
 #include "qcustomplot.h"
 
+#include "building.h"
+
 namespace Ui {
 class MainWindow;
 }

@@ -120,7 +120,7 @@ void MainWindow::on_pushButton_2_clicked()
 
     if (power.toDouble() <= 0)
     {
-        textBox->setText("Moc jednostko powinna być dodatnia");
+        textBox->setText("Moc jednostki powinna być dodatnia");
         return;
     }
 
@@ -216,6 +216,8 @@ void MainWindow::on_pushButton_clicked()
     }
 
     InputData simulationParameters = Interface::getInputData();
+    Building cinema = Building(simulationParameters);
+    bool a = true;
 }
 
 bool MainWindow::allFieldsFilled()

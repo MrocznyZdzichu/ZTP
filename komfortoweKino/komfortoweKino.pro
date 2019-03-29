@@ -15,10 +15,22 @@ TEMPLATE = app
 SOURCES += main.cpp\
         mainwindow.cpp \
     qcustomplot.cpp \
-    Interface.cpp
+    Interface.cpp \
+    Component.cpp \
+    Human.cpp \
+    vent.cpp \
+    ac.cpp \
+    building.cpp \
+    inputdata.cpp
 
 HEADERS  += mainwindow.h \
     qcustomplot.h \
-    Interface.h
+    Interface.h \
+    Component.h \
+    Human.h \
+    vent.h \
+    ac.h \
+    building.h \
+    inputdata.h
 
 FORMS    += mainwindow.ui
