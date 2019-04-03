@@ -45,9 +45,9 @@ InputData Interface::getInputData()
     for (int i = 0; i < acCount; i++)
         Parameters.unitPowers.push_back(acPowers[i]);
 
-    std::string* acModes = appWindow->getACModes();
+    double* acSPs = appWindow->getACSPs();
     for (int i = 0; i < acCount; i++)
-        Parameters.unitModes.push_back(acModes[i]);
+        Parameters.unitModes.push_back(acSPs[i]);
 
     return Parameters;
 }

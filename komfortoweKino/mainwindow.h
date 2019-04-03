@@ -45,6 +45,16 @@ private slots:
 
     void on_lineEdit_6_editingFinished();
 
+    void on_lineEdit_10_editingFinished();
+
+    void on_lineEdit_11_editingFinished();
+
+    void on_lineEdit_12_editingFinished();
+
+    void on_pushButton_6_clicked();
+
+    void on_pushButton_7_clicked();
+
 private:
     Ui::MainWindow *ui;
     void            plotTemperature(QVector<double> xData,
@@ -71,7 +81,7 @@ private:
     double          getStartHumidity();
     double          getStartCO2();
     double*         getACPowers();
-    std::string*    getACModes();
+    double*         getACSPs();
     int             getACCount();
 
 };

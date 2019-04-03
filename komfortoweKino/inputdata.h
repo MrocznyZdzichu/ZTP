@@ -7,7 +7,7 @@ struct InputData
 {
     int                         peopleCount;
     int                         ventCount;
-    std::vector<std::string>    unitModes;
+    std::vector<double>         unitModes;
     std::vector<double>         unitPowers;
     double                      cubature;
     double                      outerTemperature;

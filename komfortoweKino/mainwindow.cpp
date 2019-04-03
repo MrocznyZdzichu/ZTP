@@ -8,6 +8,7 @@
 #define textBox this->ui->textBrowser
 #define table this->ui->tableWidget
 #define powerEdit this->ui->lineEdit
+#define table2 this->ui->tableWidget_2
 
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
@@ -27,7 +28,14 @@ MainWindow::MainWindow(QWidget *parent) :
     this->ui->lineEdit_7->setText("0");
     this->ui->lineEdit_8->setText("0");
     this->ui->lineEdit_9->setText("0");
+    this->ui->lineEdit_10->setText("0");
+    this->ui->lineEdit_11->setText("0");
+    this->ui->lineEdit_12->setText("0");
     this->ui->pushButton_4->setEnabled(0);
+    this->ui->pushButton_7->setEnabled(0);
+
+    for (int i = 0; i < table2->columnCount(); i++)
+        table2->setColumnWidth(i, 60);
 }
 
 MainWindow::~MainWindow()
@@ -104,7 +112,7 @@ void MainWindow::printComm(QString text)
 void MainWindow::on_pushButton_2_clicked()
 {
     QString power = powerEdit->text();
-    QString mode = this->ui->comboBox->currentText();
+    QString SP = this->ui->lineEdit_10->text();
 
     if (power == "")
     {
@@ -124,19 +132,40 @@ void MainWindow::on_pushButton_2_clicked()
         return;
     }
 
+    if (SP == "")
+    {
+        textBox->setText("Proszę podać wartość zadaną jednostki");
+        return;
+    }
+
+    if (!this->isTextNumeric(SP) && SP[0] != '-')
+    {
+        textBox->setText("Wartość zadana jednostki musi być numeryczna");
+        return;
+    }
+
+    if (SP.toDouble() <= 0)
+    {
+        textBox->setText("Wartość zadana jednostki powinna być dodatnia");
+        return;
+    }
+
     textBox->clear();
 
     QTableWidgetItem *powerItem = new QTableWidgetItem(power);
     powerItem->setFlags(powerItem->flags() ^ Qt::ItemIsEditable);
     powerEdit->clear();
 
-    QTableWidgetItem* modeItem = new QTableWidgetItem(mode);
-    modeItem->setFlags(modeItem->flags() ^ Qt::ItemIsEditable);
+    QTableWidgetItem* SPItem = new QTableWidgetItem(SP);
+    SPItem->setFlags(SPItem->flags() ^ Qt::ItemIsEditable);
+
+    this->ui->lineEdit_10->clear();
+    powerEdit->clear();
 
     int newRowNumber = table->rowCount();
     table->setRowCount(newRowNumber+1);
 
-    table->setItem(newRowNumber, 0, modeItem);
+    table->setItem(newRowNumber, 0, SPItem);
     table->setItem(newRowNumber, 1, powerItem);
 
     if (!this->ui->pushButton_3->isEnabled())
@@ -150,9 +179,6 @@ bool MainWindow::isTextNumeric(QString text)
     int dotCount = 0;
     for (auto character : text)
     {
-        if (i == 0 && (!character.isDigit() && character != '-'))
-            return false;
-        else
         {
             if (!character.isDigit() && character != '.')
                 return false;
@@ -181,8 +207,19 @@ void MainWindow::on_pushButton_3_clicked()
 
 void MainWindow::on_lineEdit_2_editingFinished()
 {
-    if (!this->isTextNumeric(this->ui->lineEdit_2->text()))
+    bool isInteger = true;
+    std::string text = this->ui->lineEdit_2->text().toStdString();
+    for (auto character : text)
+    {
+        if (!std::isdigit(character))
+        {
+            isInteger = false;
+            break;
+        }
+    }
+    if (!isInteger)
         this->ui->lineEdit_2->setText("0");
+
 }
 
 void MainWindow::on_pushButton_5_clicked()
@@ -248,6 +285,11 @@ void MainWindow::on_lineEdit_4_editingFinished()
 {
     if (!this->isTextNumeric(this->ui->lineEdit_4->text()))
         this->ui->lineEdit_4->setText("0");
+    else
+    {
+        if (this->ui->lineEdit_4->text().toDouble() > 1)
+            this->ui->lineEdit_4->setText("0");
+    }
 }
 
 void MainWindow::on_lineEdit_9_editingFinished()
@@ -260,12 +302,22 @@ void MainWindow::on_lineEdit_8_editingFinished()
 {
     if (!this->isTextNumeric(this->ui->lineEdit_8->text()))
         this->ui->lineEdit_8->setText("0");
+    else
+    {
+        if (this->ui->lineEdit_8->text().toDouble() > 1)
+            this->ui->lineEdit_8->setText("0");
+    }
 }
 
 void MainWindow::on_lineEdit_7_editingFinished()
 {
     if (!this->isTextNumeric(this->ui->lineEdit_7->text()))
         this->ui->lineEdit_7->setText("0");
+    else
+    {
+        if (this->ui->lineEdit_7->text().toDouble() > 1)
+            this->ui->lineEdit_7->setText("0");
+    }
 }
 
 void MainWindow::on_lineEdit_6_editingFinished()
@@ -322,11 +374,11 @@ double* MainWindow::getACPowers()
     return acPowers;
 }
 
-std::string* MainWindow::getACModes()
+double* MainWindow::getACSPs()
 {
-    std::string* acModes = new std::string[table->rowCount()];
+    double* acModes = new double[table->rowCount()];
     for (int i = 0; i < table->rowCount(); i++)
-        acModes[i] = table->item(i, 0)->text().toStdString();
+        acModes[i] = table->item(i, 0)->text().toDouble();
     return acModes;
 }
 
@@ -334,3 +386,124 @@ int MainWindow::getACCount()
 {
     return this->ui->tableWidget->rowCount();
 }
+
+void MainWindow::on_lineEdit_10_editingFinished()
+{
+    QString text = this->ui->lineEdit_10->text();
+    if (!this->isTextNumeric(text) || text.at(0) == '-' ||
+        text.toDouble() < 0)
+        this->ui->lineEdit_10->setText(0);
+}
+
+void MainWindow::on_lineEdit_11_editingFinished()
+{
+    if (!this->isTextNumeric(this->ui->lineEdit_11->text()))
+        this->ui->lineEdit_11->setText("0");
+}
+
+void MainWindow::on_lineEdit_12_editingFinished()
+{
+    if (!this->isTextNumeric(this->ui->lineEdit_12->text()))
+        this->ui->lineEdit_12->setText("0");
+}
+
+void MainWindow::on_pushButton_6_clicked()
+{
+    QString length, area, speed;
+
+    length =    this->ui->lineEdit_5->text();
+    area =      this->ui->lineEdit_11->text();
+    speed =     this->ui->lineEdit_12->text();
+
+    if (length == "")
+    {
+        textBox->setText("Proszę podać długość trasy");
+        return;
+    }
+
+    if (!this->isTextNumeric(length) && length[0] != '-')
+    {
+        textBox->setText("Długość trasy musi być numeryczna");
+        return;
+    }
+
+    if (length.toDouble() <= 0)
+    {
+        textBox->setText("Długość trasy powinna być dodatnia");
+        return;
+    }
+
+    if (area == "")
+    {
+        textBox->setText("Proszę podać pole przekroju");
+        return;
+    }
+
+    if (!this->isTextNumeric(area) && area[0] != '-')
+    {
+        textBox->setText("Pole przekroju musi być numeryczna");
+        return;
+    }
+
+    if (area.toDouble() <= 0)
+    {
+        textBox->setText("Pole przekroju powinna być dodatnia");
+        return;
+    }
+
+    if (speed == "")
+    {
+        textBox->setText("Proszę podać prędkość powietrza");
+        return;
+    }
+
+    if (!this->isTextNumeric(speed) && speed[0] != '-')
+    {
+        textBox->setText("Prędkość powietrza musi być numeryczna");
+        return;
+    }
+
+    if (speed.toDouble() <= 0)
+    {
+        textBox->setText("Prędkość powietrza powinna być dodatnia");
+        return;
+    }
+
+    textBox->clear();
+
+    QTableWidgetItem *lengthItem = new QTableWidgetItem(length);
+    lengthItem->setFlags(lengthItem->flags() ^ Qt::ItemIsEditable);
+
+    QTableWidgetItem* areaItem = new QTableWidgetItem(area);
+    areaItem->setFlags(areaItem->flags() ^ Qt::ItemIsEditable);
+
+    QTableWidgetItem* speedItem = new QTableWidgetItem(speed);
+    speedItem->setFlags(speedItem->flags() ^ Qt::ItemIsEditable);
+
+    this->ui->lineEdit_5->clear();
+    this->ui->lineEdit_11->clear();
+    this->ui->lineEdit_12->clear();
+
+    int newRowNumber = table2->rowCount();
+    table2->setRowCount(newRowNumber+1);
+
+    table2->setItem(newRowNumber, 0, lengthItem);
+    table2->setItem(newRowNumber, 1, areaItem);
+    table2->setItem(newRowNumber, 2, speedItem);
+
+    if (!this->ui->pushButton_7->isEnabled())
+        this->ui->pushButton_7->setEnabled(1);
+}
+
+void MainWindow::on_pushButton_7_clicked()
+{
+    if (!table2->selectedItems().size())
+        return;
+
+    int selectedRow = table2->selectedItems()[0]->row();
+    table2->removeRow(selectedRow);
+
+    if (!table2->rowCount())
+        this->ui->pushButton_3->setEnabled(0);
+}
+

@@ -23,9 +23,9 @@
    <widget class="QTextBrowser" name="textBrowser">
     <property name="geometry">
      <rect>
-      <x>450</x>
+      <x>390</x>
       <y>500</y>
-      <width>300</width>
+      <width>201</width>
       <height>50</height>
      </rect>
     </property>
@@ -40,8 +40,8 @@ p, li { white-space: pre-wrap; }
    <widget class="QPushButton" name="pushButton">
     <property name="geometry">
      <rect>
-      <x>520</x>
-      <y>570</y>
+      <x>400</x>
+      <y>560</y>
       <width>160</width>
       <height>25</height>
      </rect>
@@ -125,26 +125,29 @@ p, li { white-space: pre-wrap; }
    <widget class="QTableWidget" name="tableWidget">
     <property name="geometry">
      <rect>
-      <x>50</x>
-      <y>400</y>
+      <x>10</x>
+      <y>410</y>
       <width>221</width>
       <height>181</height>
      </rect>
     </property>
+    <property name="alternatingRowColors">
+     <bool>false</bool>
+    </property>
     <property name="rowCount">
-     <number>5</number>
+     <number>0</number>
     </property>
     <property name="columnCount">
      <number>2</number>
     </property>
     <attribute name="horizontalHeaderVisible">
-     <bool>false</bool>
+     <bool>true</bool>
     </attribute>
     <attribute name="horizontalHeaderCascadingSectionResizes">
      <bool>false</bool>
     </attribute>
     <attribute name="verticalHeaderVisible">
-     <bool>false</bool>
+     <bool>true</bool>
     </attribute>
     <attribute name="verticalHeaderCascadingSectionResizes">
      <bool>false</bool>
@@ -152,14 +155,9 @@ p, li { white-space: pre-wrap; }
     <attribute name="verticalHeaderStretchLastSection">
      <bool>false</bool>
     </attribute>
-    <row/>
-    <row/>
-    <row/>
-    <row/>
-    <row/>
     <column>
      <property name="text">
-      <string>Tryb pracy</string>
+      <string>SP</string>
      </property>
     </column>
     <column>
@@ -171,8 +169,8 @@ p, li { white-space: pre-wrap; }
    <widget class="QLabel" name="label_4">
     <property name="geometry">
      <rect>
-      <x>100</x>
-      <y>370</y>
+      <x>60</x>
+      <y>380</y>
       <width>121</width>
       <height>20</height>
      </rect>
@@ -184,10 +182,10 @@ p, li { white-space: pre-wrap; }
    <widget class="QWidget" name="verticalLayoutWidget">
     <property name="geometry">
      <rect>
-      <x>279</x>
-      <y>369</y>
-      <width>161</width>
-      <height>211</height>
+      <x>236</x>
+      <y>409</y>
+      <width>151</width>
+      <height>181</height>
      </rect>
     </property>
     <layout class="QVBoxLayout" name="verticalLayout">
@@ -197,29 +195,19 @@ p, li { white-space: pre-wrap; }
      <item>
       <widget class="QLabel" name="label_5">
        <property name="text">
-        <string>Tryb pracy jednostki</string>
+        <string>Temperatura zadana
+klimatyzatora</string>
        </property>
        <property name="scaledContents">
         <bool>true</bool>
        </property>
        <property name="alignment">
-        <set>Qt::AlignBottom|Qt::AlignHCenter</set>
+        <set>Qt::AlignCenter</set>
        </property>
       </widget>
      </item>
      <item>
-      <widget class="QComboBox" name="comboBox">
-       <item>
-        <property name="text">
-         <string>Chlodzenie</string>
-        </property>
-       </item>
-       <item>
-        <property name="text">
-         <string>Ogrzewanie</string>
-        </property>
-       </item>
-      </widget>
+      <widget class="QLineEdit" name="lineEdit_10"/>
      </item>
      <item>
       <widget class="QLabel" name="label_6">
@@ -256,8 +244,8 @@ p, li { white-space: pre-wrap; }
    <widget class="QWidget" name="verticalLayoutWidget_2">
     <property name="geometry">
      <rect>
-      <x>520</x>
-      <y>399</y>
+      <x>400</x>
+      <y>410</y>
       <width>161</width>
       <height>41</height>
      </rect>
@@ -281,10 +269,10 @@ p, li { white-space: pre-wrap; }
    <widget class="QWidget" name="horizontalLayoutWidget_2">
     <property name="geometry">
      <rect>
-      <x>450</x>
-      <y>450</y>
-      <width>301</width>
-      <height>41</height>
+      <x>390</x>
+      <y>460</y>
+      <width>201</width>
+      <height>31</height>
      </rect>
     </property>
     <layout class="QHBoxLayout" name="horizontalLayout_2">
@@ -307,89 +295,26 @@ p, li { white-space: pre-wrap; }
    <widget class="QLabel" name="label_8">
     <property name="geometry">
      <rect>
-      <x>820</x>
-      <y>450</y>
-      <width>131</width>
-      <height>20</height>
+      <x>990</x>
+      <y>390</y>
+      <width>71</width>
+      <height>31</height>
      </rect>
     </property>
     <property name="text">
-     <string>Warunki zewnętrzne</string>
+     <string>Warunki
+zewnętrzne</string>
     </property>
     <property name="alignment">
      <set>Qt::AlignCenter</set>
     </property>
    </widget>
-   <widget class="QWidget" name="gridLayoutWidget">
-    <property name="geometry">
-     <rect>
-      <x>753</x>
-      <y>479</y>
-      <width>271</width>
-      <height>71</height>
-     </rect>
-    </property>
-    <layout class="QGridLayout" name="gridLayout">
-     <property name="bottomMargin">
-      <number>0</number>
-     </property>
-     <property name="spacing">
-      <number>25</number>
-     </property>
-     <item row="1" column="2">
-      <widget class="QLineEdit" name="lineEdit_4"/>
-     </item>
-     <item row="0" column="2">
-      <widget class="QLabel" name="label_10">
-       <property name="text">
-        <string>Wilgotność</string>
-       </property>
-       <property name="alignment">
-        <set>Qt::AlignBottom|Qt::AlignHCenter</set>
-       </property>
-      </widget>
-     </item>
-     <item row="1" column="1">
-      <widget class="QLineEdit" name="lineEdit_3"/>
-     </item>
-     <item row="0" column="1">
-      <widget class="QLabel" name="label_9">
-       <property name="text">
-        <string>Temperatura</string>
-       </property>
-       <property name="alignment">
-        <set>Qt::AlignBottom|Qt::AlignHCenter</set>
-       </property>
-      </widget>
-     </item>
-     <item row="0" column="0">
-      <widget class="QLabel" name="label_11">
-       <property name="text">
-        <string>Liczba 
-wentylatorów</string>
-       </property>
-       <property name="alignment">
-        <set>Qt::AlignBottom|Qt::AlignHCenter</set>
-       </property>
-      </widget>
-     </item>
-     <item row="1" column="0">
-      <widget class="QLineEdit" name="lineEdit_5"/>
-     </item>
-    </layout>
-    <zorder>lineEdit_4</zorder>
-    <zorder>label_9</zorder>
-    <zorder>lineEdit_3</zorder>
-    <zorder>label_10</zorder>
-    <zorder>label_11</zorder>
-    <zorder>lineEdit_5</zorder>
-   </widget>
    <widget class="QWidget" name="verticalLayoutWidget_3">
     <property name="geometry">
      <rect>
-      <x>1030</x>
+      <x>1069</x>
       <y>359</y>
-      <width>160</width>
+      <width>121</width>
       <height>221</height>
      </rect>
     </property>
@@ -457,6 +382,142 @@ wentylatorów</string>
       <widget class="QLineEdit" name="lineEdit_9"/>
      </item>
     </layout>
+   </widget>
+   <widget class="QWidget" name="verticalLayoutWidget_4">
+    <property name="geometry">
+     <rect>
+      <x>600</x>
+      <y>369</y>
+      <width>151</width>
+      <height>221</height>
+     </rect>
+    </property>
+    <layout class="QVBoxLayout" name="verticalLayout_4">
+     <item>
+      <widget class="QLabel" name="label_11">
+       <property name="text">
+        <string>Długość trasy
+powietrza</string>
+       </property>
+       <property name="alignment">
+        <set>Qt::AlignBottom|Qt::AlignHCenter</set>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QLineEdit" name="lineEdit_5"/>
+     </item>
+     <item>
+      <widget class="QLabel" name="label_17">
+       <property name="text">
+        <string>Pole przekroju
+wentylacji</string>
+       </property>
+       <property name="alignment">
+        <set>Qt::AlignHCenter|Qt::AlignTop</set>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QLineEdit" name="lineEdit_11"/>
+     </item>
+     <item>
+      <widget class="QLabel" name="label_18">
+       <property name="text">
+        <string>Prędkośc powietrza</string>
+       </property>
+       <property name="alignment">
+        <set>Qt::AlignCenter</set>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QLineEdit" name="lineEdit_12"/>
+     </item>
+     <item>
+      <widget class="QPushButton" name="pushButton_6">
+       <property name="text">
+        <string>Dodaj wentylacje</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QPushButton" name="pushButton_7">
+       <property name="text">
+        <string>Usun wentylacje</string>
+       </property>
+      </widget>
+     </item>
+    </layout>
+   </widget>
+   <widget class="QWidget" name="verticalLayoutWidget_5">
+    <property name="geometry">
+     <rect>
+      <x>990</x>
+      <y>435</y>
+      <width>71</width>
+      <height>91</height>
+     </rect>
+    </property>
+    <layout class="QVBoxLayout" name="verticalLayout_5">
+     <item>
+      <widget class="QLabel" name="label_9">
+       <property name="text">
+        <string>Temperatura</string>
+       </property>
+       <property name="alignment">
+        <set>Qt::AlignBottom|Qt::AlignHCenter</set>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QLineEdit" name="lineEdit_3"/>
+     </item>
+     <item>
+      <widget class="QLabel" name="label_10">
+       <property name="text">
+        <string>Wilgotność</string>
+       </property>
+       <property name="alignment">
+        <set>Qt::AlignBottom|Qt::AlignHCenter</set>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QLineEdit" name="lineEdit_4"/>
+     </item>
+    </layout>
+   </widget>
+   <widget class="QTableWidget" name="tableWidget_2">
+    <property name="geometry">
+     <rect>
+      <x>760</x>
+      <y>370</y>
+      <width>221</width>
+      <height>221</height>
+     </rect>
+    </property>
+    <property name="columnCount">
+     <number>3</number>
+    </property>
+    <attribute name="verticalHeaderStretchLastSection">
+     <bool>false</bool>
+    </attribute>
+    <column>
+     <property name="text">
+      <string>Długość</string>
+     </property>
+    </column>
+    <column>
+     <property name="text">
+      <string>Przekrój</string>
+     </property>
+    </column>
+    <column>
+     <property name="text">
+      <string>Prędkość</string>
+     </property>
+    </column>
    </widget>
   </widget>
   <widget class="QMenuBar" name="menuBar">

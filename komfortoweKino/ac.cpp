@@ -1,7 +1,7 @@
 #include "ac.h"
 
-AC::AC(std::string mode, double power):
-    mode(mode), power(power)
+AC::AC(double SP, double power):
+    SP(SP), power(power)
 {
 
 }

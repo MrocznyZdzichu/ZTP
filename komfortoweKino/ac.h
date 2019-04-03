@@ -6,10 +6,10 @@
 class AC : public Component
 {
 private:
-    const std::string     mode;
-    const double          power;
+    const double SP;
+    const double power;
 public:
-    AC(std::string mode, double power);
+    AC(double mode, double power);
     virtual double  changeCO2();
     virtual double  changeHumidity();
     virtual double  changeTemperature();
