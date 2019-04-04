@@ -13,6 +13,10 @@ public:
     virtual double  changeCO2();
     virtual double  changeHumidity();
     virtual double  changeTemperature(const double& temperature);
+    void operator() ()
+    {
+
+    }
 };
 
 #endif // AC_H
