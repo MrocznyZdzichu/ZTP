@@ -4,6 +4,7 @@
 #include "Human.h"
 #include "vent.h"
 #include "ac.h"
+#include <boost/numeric/odeint.hpp>
 
 Building::Building(const InputData& Parameters):
     cubature(Parameters.cubature),

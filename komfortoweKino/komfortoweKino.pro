@@ -34,3 +34,8 @@ HEADERS  += mainwindow.h \
     inputdata.h
 
 FORMS    += mainwindow.ui
+
+win32 {
+    INCLUDEPATH += E:/boost/include/boost-1_69
+    LIBS += -LC:/boost/lib
+}
