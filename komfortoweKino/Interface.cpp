@@ -31,7 +31,6 @@ InputData Interface::getInputData()
 {
     InputData Parameters;
     Parameters.peopleCount = appWindow->getPeopleCount();
-    Parameters.ventCount = appWindow->getVentsCount();
     Parameters.cubature = appWindow->getCubature();
     Parameters.outerTemperature = appWindow->getOuterTemperature();
     Parameters.outerHumidity = appWindow->getOuterHumidity();
@@ -40,6 +39,7 @@ InputData Interface::getInputData()
     Parameters.startCO2 = appWindow->getStartCO2();
 
     int acCount = appWindow->getACCount();
+    int ventCount = appWindow->getVentsCount();
 
     double* acPowers = appWindow->getACPowers();
     for (int i = 0; i < acCount; i++)
@@ -48,6 +48,18 @@ InputData Interface::getInputData()
     double* acSPs = appWindow->getACSPs();
     for (int i = 0; i < acCount; i++)
         Parameters.unitModes.push_back(acSPs[i]);
+
+    double* ventLenghts = appWindow->getVentLengths();
+    for (int i = 0; i < ventCount; i++)
+        Parameters.ventLengths.push_back(ventLenghts[i]);
+
+    double* ventAreas = appWindow->getVentArea();
+    for (int i = 0; i < ventCount; i++)
+        Parameters.ventAreas.push_back(ventAreas[i]);
+
+    double* ventSpeed = appWindow->getVentSpeed();
+    for (int i = 0; i < ventCount; i++)
+        Parameters.ventSpeed.push_back(ventSpeed[i]);
 
     return Parameters;
 }

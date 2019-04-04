@@ -30,7 +30,7 @@ private:
 //-----------methods------------------
 public:
     Building(const InputData& Parameters);
-    void    update();
+    void    simulate();
     void    drawResults();
 };
 

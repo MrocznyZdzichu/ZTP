@@ -246,15 +246,10 @@ void MainWindow::on_pushButton_4_clicked()
 
 void MainWindow::on_pushButton_clicked()
 {
-    if (!this->allFieldsFilled())
-    {
-        textBox->setText("Prosze uzupełnić wszystkie pola");
-        return;
-    }
-
     InputData simulationParameters = Interface::getInputData();
     Building cinema = Building(simulationParameters);
-    bool a = true;
+    cinema.simulate();
+    cinema.drawResults();
 }
 
 bool MainWindow::allFieldsFilled()
@@ -333,7 +328,7 @@ int MainWindow::getPeopleCount()
 
 int MainWindow::getVentsCount()
 {
-    return this->ui->lineEdit_5->text().toInt();
+    return table2->rowCount();
 }
 
 double MainWindow::getCubature()
@@ -507,3 +502,26 @@ void MainWindow::on_pushButton_7_clicked()
         this->ui->pushButton_3->setEnabled(0);
 }
 
+double* MainWindow::getVentLengths()
+{
+    double* VentLengths = new double[table2->rowCount()];
+    for (int i = 0; i < table2->rowCount(); i++)
+        VentLengths[i] = table2->item(i, 0)->text().toDouble();
+    return VentLengths;
+}
+
+double* MainWindow::getVentArea()
+{
+    double* VentArea = new double[table2->rowCount()];
+    for (int i = 0; i < table2->rowCount(); i++)
+        VentArea[i] = table2->item(i, 1)->text().toDouble();
+    return VentArea;
+}
+
+double* MainWindow::getVentSpeed()
+{
+    double* VentSpeed = new double[table2->rowCount()];
+    for (int i = 0; i < table2->rowCount(); i++)
+        VentSpeed[i] = table2->item(i, 2)->text().toDouble();
+    return VentSpeed;
+}

@@ -22,8 +22,10 @@ Building::Building(const InputData& Parameters):
     for (int i = 0; i < Parameters.peopleCount; i++)
         this->HVAC_people.push_back(new Human());
 
-    for (int i = 0; i < Parameters.ventCount; i++)
-        this->HVAC_people.push_back(new Vent());
+    for (int i = 0; i < Parameters.ventLengths.size(); i++)
+        this->HVAC_people.push_back(new Vent(Parameters.ventLengths[i],
+                                             Parameters.ventAreas[i],
+                                             Parameters.ventSpeed[i]));
 
     for (int i = 0; i < Parameters.unitModes.size(); i++)
     {
@@ -32,7 +34,7 @@ Building::Building(const InputData& Parameters):
     }
 }
 
-void Building::update()
+void Building::simulate()
 {
 
 }

@@ -1,0 +1,14 @@
+INPUT(
+./debug\main.o
+./debug\mainwindow.o
+./debug\qcustomplot.o
+./debug\Interface.o
+./debug\Component.o
+./debug\Human.o
+./debug\vent.o
+./debug\ac.o
+./debug\building.o
+./debug\inputdata.o
+./debug\moc_mainwindow.o
+./debug\moc_qcustomplot.o
+);

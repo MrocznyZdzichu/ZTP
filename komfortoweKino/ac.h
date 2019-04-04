@@ -7,7 +7,7 @@ class AC : public Component
 {
 private:
     const double SP;
-    const double power;
+    const double powerMax;
 public:
     AC(double mode, double power);
     virtual double  changeCO2();

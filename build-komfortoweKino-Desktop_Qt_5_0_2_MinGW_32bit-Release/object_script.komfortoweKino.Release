@@ -1,0 +1,14 @@
+INPUT(
+./release\main.o
+./release\mainwindow.o
+./release\qcustomplot.o
+./release\Interface.o
+./release\Component.o
+./release\Human.o
+./release\vent.o
+./release\ac.o
+./release\building.o
+./release\inputdata.o
+./release\moc_mainwindow.o
+./release\moc_qcustomplot.o
+);

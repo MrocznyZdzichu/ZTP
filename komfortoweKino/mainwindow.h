@@ -72,18 +72,25 @@ private:
     void            printComm(QString text);
     bool            isTextNumeric(QString text);
     bool            allFieldsFilled();
+
     int             getPeopleCount();
-    int             getVentsCount();
+
     double          getCubature();
     double          getOuterTemperature();
     double          getOuterHumidity();
+
     double          getStartTemperature();
     double          getStartHumidity();
     double          getStartCO2();
+
+    int             getACCount();
     double*         getACPowers();
     double*         getACSPs();
-    int             getACCount();
 
+    int             getVentsCount();
+    double*         getVentLengths();
+    double*         getVentArea();
+    double*         getVentSpeed();
 };
 
 #endif // MAINWINDOW_H

@@ -6,9 +6,11 @@
 struct InputData
 {
     int                         peopleCount;
-    int                         ventCount;
     std::vector<double>         unitModes;
     std::vector<double>         unitPowers;
+    std::vector<double>         ventLengths;
+    std::vector<double>         ventAreas;
+    std::vector<double>         ventSpeed;
     double                      cubature;
     double                      outerTemperature;
     double                      outerHumidity;

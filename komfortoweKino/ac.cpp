@@ -1,7 +1,7 @@
 #include "ac.h"
 
 AC::AC(double SP, double power):
-    SP(SP), power(power)
+    SP(SP), powerMax(power)
 {
 
 }
