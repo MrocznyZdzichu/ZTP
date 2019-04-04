@@ -15,7 +15,8 @@ double Human::changeHumidity()
 
 }
 
-double Human::changeTemperature()
+double Human::changeTemperature(const double& temperature)
 {
-
+    double residuum = this->temperature - temperature;
+    return residuum/this->thermalResistance;
 }

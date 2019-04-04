@@ -12,7 +12,7 @@ public:
     AC(double mode, double power);
     virtual double  changeCO2();
     virtual double  changeHumidity();
-    virtual double  changeTemperature();
+    virtual double  changeTemperature(const double& temperature);
 };
 
 #endif // AC_H

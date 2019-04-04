@@ -27,6 +27,7 @@ Building::Building(const InputData& Parameters):
         this->HVAC_people.push_back(new Vent(Parameters.ventLengths[i],
                                              Parameters.ventAreas[i],
                                              Parameters.ventSpeed[i]));
+    Vent::setOuterTemperature(this->Outer.temperature);
 
     for (int i = 0; i < Parameters.unitModes.size(); i++)
     {

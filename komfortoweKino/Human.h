@@ -6,11 +6,12 @@ class Human : public Component
 {
 public:
     Human();
-    static constexpr double thermalResistance = 0.3;
-    static constexpr double temperature = 273.15 + 36.6;
     virtual double  changeCO2();
     virtual double  changeHumidity();
-    virtual double  changeTemperature();
+    virtual double  changeTemperature(const double& temperature);
+private:
+    static constexpr double thermalResistance = 0.3;
+    static constexpr double temperature = 273.15 + 36.6;
 };
 
 #endif // HUMAN_H
