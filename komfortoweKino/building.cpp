@@ -62,7 +62,6 @@ void Building::simulateTemperature()
 
     this->simTimes = QVector<double>::fromStdVector(times);
     this->historyTemperature = QVector<double>::fromStdVector(temperatures);
-    bool a = 0;
 }
 
 void Building::drawResults()
