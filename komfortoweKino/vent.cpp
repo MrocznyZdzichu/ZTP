@@ -5,9 +5,8 @@ double Vent::outerTemperature;
 Vent::Vent(double length, double area, double speed) :
     length(length), area(area), speed(speed)
 {
-    this->k = Vent::k0 * sqrt(this->speed + 1);
-    this->thermalResistance = this->length /
-                                (this->k * this->area);
+    this->k = Vent::k0*exp(-1*speed/3);
+    this->thermalResistance = k * length / area;
 }
 
 double Vent::changeCO2()

@@ -7,7 +7,7 @@
 class Vent : public Component
 {
 private:
-    static constexpr double k0 = 0.025;
+    static constexpr double k0 = 0.5;
     static double outerTemperature;
     const double length;
     const double area;

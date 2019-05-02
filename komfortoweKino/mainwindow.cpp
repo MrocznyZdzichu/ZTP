@@ -153,11 +153,11 @@ void MainWindow::on_pushButton_2_clicked()
     textBox->clear();
 
     QTableWidgetItem *powerItem = new QTableWidgetItem(power);
-    powerItem->setFlags(powerItem->flags() ^ Qt::ItemIsEditable);
+    //powerItem->setFlags(powerItem->flags() ^ Qt::ItemIsEditable);
     powerEdit->clear();
 
     QTableWidgetItem* SPItem = new QTableWidgetItem(SP);
-    SPItem->setFlags(SPItem->flags() ^ Qt::ItemIsEditable);
+    //SPItem->setFlags(SPItem->flags() ^ Qt::ItemIsEditable);
 
     this->ui->lineEdit_10->clear();
     powerEdit->clear();
@@ -467,13 +467,13 @@ void MainWindow::on_pushButton_6_clicked()
     textBox->clear();
 
     QTableWidgetItem *lengthItem = new QTableWidgetItem(length);
-    lengthItem->setFlags(lengthItem->flags() ^ Qt::ItemIsEditable);
+    //lengthItem->setFlags(lengthItem->flags() ^ Qt::ItemIsEditable);
 
     QTableWidgetItem* areaItem = new QTableWidgetItem(area);
-    areaItem->setFlags(areaItem->flags() ^ Qt::ItemIsEditable);
+    //areaItem->setFlags(areaItem->flags() ^ Qt::ItemIsEditable);
 
     QTableWidgetItem* speedItem = new QTableWidgetItem(speed);
-    speedItem->setFlags(speedItem->flags() ^ Qt::ItemIsEditable);
+    //speedItem->setFlags(speedItem->flags() ^ Qt::ItemIsEditable);
 
     this->ui->lineEdit_5->clear();
     this->ui->lineEdit_11->clear();

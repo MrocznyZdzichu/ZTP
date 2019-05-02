@@ -11,7 +11,7 @@ public:
     virtual double  changeTemperature(const double& temperature);
 private:
     static constexpr double thermalResistance = 0.3;
-    static constexpr double temperature = 273.15 + 36.6;
+    static constexpr double temperature = 36.6;
 };
 
 #endif // HUMAN_H

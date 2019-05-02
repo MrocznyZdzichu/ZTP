@@ -20,5 +20,5 @@ double AC::changeHumidity()
 double AC::changeTemperature(const double& temperature)
 {
     double residuum = this->SP - temperature;
-    return -1*this->powerMax*tanh(0.5*residuum);
+    return this->powerMax*tanh(0.5*residuum);
 }

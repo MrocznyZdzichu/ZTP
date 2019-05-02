@@ -1,10 +1,14 @@
-#define co2conc 0.0004
+#define co2conc             0.0004
+#define airDensity          1.2
+#define airSpecificHeat     1005.0
 
 #include "building.h"
-#include "Human.h"
-#include "vent.h"
-#include "ac.h"
-#include <boost/numeric/odeint.hpp>
+#include "Component.h"
+#include "observer.h"
+#include "Interface.h"
+#include <numeric>
+
+using namespace boost::numeric;
 
 Building::Building(const InputData& Parameters):
     cubature(Parameters.cubature),
@@ -38,10 +42,30 @@ Building::Building(const InputData& Parameters):
 
 void Building::simulate()
 {
+    this->simulateTemperature();
+}
 
+void Building::simulateTemperature()
+{
+    stateVector x;
+    x.push_back(this->Initial.temperature);
+
+    std::vector<stateVector>    states;
+    std::vector<double>         times;
+    odeTemperature system(this->cubature, airDensity, airSpecificHeat, this->HVAC_people);
+
+    size_t steps = odeint::integrate(system, x, 0, 1800, 1, observer(states, times));
+
+    std::vector<double> temperatures;
+    for (const auto& state : states)
+        temperatures.push_back(state[0]);
+
+    this->simTimes = QVector<double>::fromStdVector(times);
+    this->historyTemperature = QVector<double>::fromStdVector(temperatures);
+    bool a = 0;
 }
 
 void Building::drawResults()
 {
-
+    Interface::plotResults(this->simTimes, this->historyTemperature, 1);
 }

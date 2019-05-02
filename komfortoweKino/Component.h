@@ -5,6 +5,8 @@ class Component
 {
 public:
     Component();
+    virtual ~Component();
+
     virtual double  changeCO2() = 0;
     virtual double  changeHumidity() = 0;
     virtual double  changeTemperature(const double& temperature) = 0;
