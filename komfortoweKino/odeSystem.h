@@ -7,10 +7,10 @@
 
 
 typedef std::vector<double> stateVector;
-class odeTemperature
+class odeSystem
 {
 public:
-    odeTemperature(double cubature, double density, double specificHeat,
+    odeSystem(double cubature, double density, double specificHeat,
                    QVector<Component*> building_HVAC_people);
 
     void operator() (const stateVector &x , stateVector &dxdt , const double t )

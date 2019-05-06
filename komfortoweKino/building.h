@@ -5,7 +5,7 @@
 #include "vent.h"
 #include "Human.h"
 #include "inputdata.h"
-#include "odetemperture.h"
+#include "odeSystem.h"
 #include <QVector>
 #include "boost/numeric/odeint.hpp"
 

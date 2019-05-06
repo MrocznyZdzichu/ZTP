@@ -42,17 +42,15 @@ Building::Building(const InputData& Parameters):
 
 void Building::simulate()
 {
-    this->simulateTemperature();
-}
-
-void Building::simulateTemperature()
-{
+    //state vector: x[0] - temperature
+    //              x[1] - CO2 concentration
+    //              x[2] - air dampness
     stateVector x;
     x.push_back(this->Initial.temperature);
 
     std::vector<stateVector>    states;
     std::vector<double>         times;
-    odeTemperature system(this->cubature, airDensity, airSpecificHeat, this->HVAC_people);
+    odeSystem system(this->cubature, airDensity, airSpecificHeat, this->HVAC_people);
 
     size_t steps = odeint::integrate(system, x, 0, 1800, 1, observer(states, times));
 

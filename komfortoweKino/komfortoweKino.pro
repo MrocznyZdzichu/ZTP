@@ -14,7 +14,7 @@ TEMPLATE = app
 
 SOURCES += main.cpp\
         mainwindow.cpp \
-    odetemperture.cpp \
+    odeSystem.cpp \
     qcustomplot.cpp \
     Interface.cpp \
     Component.cpp \
@@ -25,7 +25,7 @@ SOURCES += main.cpp\
 
 HEADERS  += mainwindow.h \
     observer.h \
-    odetemperture.h \
+    odeSystem.h \
     qcustomplot.h \
     Interface.h \
     Component.h \

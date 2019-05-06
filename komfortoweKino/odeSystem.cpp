@@ -1,6 +1,6 @@
-#include "odetemperture.h"
+#include "odeSystem.h"
 
-odeTemperature::odeTemperature(double cubature, double density, double specificHeat,
+odeSystem::odeSystem(double cubature, double density, double specificHeat,
                                QVector<Component*> building_HVAC_people)
     : thermalCapacity(cubature*density*specificHeat),
       HVAC_people(building_HVAC_people)
