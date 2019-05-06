@@ -31,7 +31,9 @@ Building::Building(const InputData& Parameters):
         this->HVAC_people.push_back(new Vent(Parameters.ventLengths[i],
                                              Parameters.ventAreas[i],
                                              Parameters.ventSpeed[i]));
+
     Vent::setOuterTemperature(this->Outer.temperature);
+    Vent::setOuterCO2(co2conc);
 
     for (int i = 0; i < Parameters.unitModes.size(); i++)
     {
@@ -47,6 +49,7 @@ void Building::simulate()
     //              x[2] - air dampness
     stateVector x;
     x.push_back(this->Initial.temperature);
+    x.push_back(this->Initial.CO2);
 
     std::vector<stateVector>    states;
     std::vector<double>         times;
@@ -55,14 +58,20 @@ void Building::simulate()
     size_t steps = odeint::integrate(system, x, 0, 1800, 1, observer(states, times));
 
     std::vector<double> temperatures;
+    std::vector<double> co2History;
     for (const auto& state : states)
+    {
         temperatures.push_back(state[0]);
+        co2History.push_back(state[1]);
+    }
 
     this->simTimes = QVector<double>::fromStdVector(times);
     this->historyTemperature = QVector<double>::fromStdVector(temperatures);
+    this->historyCO2 = QVector<double>::fromStdVector(co2History);
 }
 
 void Building::drawResults()
 {
     Interface::plotResults(this->simTimes, this->historyTemperature, 1);
+    Interface::plotResults(this->simTimes, this->historyCO2, 3);
 }

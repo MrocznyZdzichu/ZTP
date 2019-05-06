@@ -19,9 +19,15 @@ public:
         for (int i = 0; i < this->HVAC_people.size(); i++)
             sum += HVAC_people[i]->changeTemperature(x[0]);
         dxdt[0] = sum/this->thermalCapacity;
+
+        sum = 0.0;
+        for (int i = 0; i < this->HVAC_people.size(); i++)
+            sum += HVAC_people[i]->changeCO2(x[1], this->cubature, x[0]);
+        dxdt[1] = sum;
     }
 private:
     double thermalCapacity;
+    double cubature;
     QVector<Component*> HVAC_people;
 };
 

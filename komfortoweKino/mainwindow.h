@@ -3,8 +3,12 @@
 
 #include <QMainWindow>
 #include "qcustomplot.h"
-
 #include "building.h"
+
+struct Limits
+{
+    double xMin, xMax, yMin, yMax;
+};
 
 namespace Ui {
 class MainWindow;
@@ -66,7 +70,7 @@ private:
     void            plotCO2(QVector<double> xData,
                             QVector<double> yData);
 
-    double*         axisLimits(QVector<double> xData,
+    Limits         axisLimits(QVector<double> xData,
                                QVector<double> yData);
 
     void            printComm(QString text);
