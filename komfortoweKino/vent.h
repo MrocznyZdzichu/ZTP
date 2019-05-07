@@ -10,6 +10,7 @@ private:
     static constexpr double k0 = 0.5;
     static double outerTemperature;
     static double outerCO2;
+    static double outerHumidity;
 
     const double length;
     const double area;
@@ -19,10 +20,12 @@ private:
 public:
     Vent(double length, double area, double speed);
     virtual double  changeCO2(const double& co2, const double& cubature, const double& temperature);
-    virtual double  changeHumidity();
+    virtual double  changeHumidity(const double& humidity, const double& co2,
+                                   const double& temperature, const double& cubature);
     virtual double  changeTemperature(const double& temperature);
     static void     setOuterTemperature(const double& temperature);
     static void     setOuterCO2(const double& co2);
+    static void     setOuterHumidity(const double& humidity);
 };
 
 #endif // VENT_H

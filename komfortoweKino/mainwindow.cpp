@@ -49,8 +49,8 @@ Limits MainWindow::axisLimits(QVector<double> xData, QVector<double> yData)
 
     limits.xMin = *std::min_element(xData.begin(), xData.end());
     limits.xMax = *std::max_element(xData.begin(), xData.end());
-    limits.yMin = *std::min_element(yData.begin(), yData.end());
-    limits.yMax = *std::max_element(yData.begin(), yData.end());
+    limits.yMin = *std::min_element(yData.begin(), yData.end()) - 0.0001;
+    limits.yMax = *std::max_element(yData.begin(), yData.end()) + 0.0001;
 
     return limits;
 }
@@ -80,8 +80,8 @@ void MainWindow::plotHumidity(QVector<double> xData, QVector<double> yData)
     humPlot->xAxis->setLabel("time");
     humPlot->yAxis->setLabel("humidity");
 
-    tempPlot->xAxis->setRange(limits.xMin, limits.xMax);
-    tempPlot->yAxis->setRange(limits.yMin, limits.yMax);
+    humPlot->xAxis->setRange(limits.xMin, limits.xMax);
+    humPlot->yAxis->setRange(limits.yMin, limits.yMax);
 
     humPlot->graph(0)->setData(xData, yData);
     humPlot->replot();

@@ -33,7 +33,11 @@ Building::Building(const InputData& Parameters):
                                              Parameters.ventSpeed[i]));
 
     Vent::setOuterTemperature(this->Outer.temperature);
-    Vent::setOuterCO2(co2conc);
+    Vent::setOuterCO2(this->Outer.CO2);
+    Vent::setOuterHumidity(this->Outer.humidity);
+
+    AC::setOuterCO2(this->Outer.CO2);
+    AC::setOuterHumidity(this->Outer.humidity);
 
     for (int i = 0; i < Parameters.unitModes.size(); i++)
     {
@@ -50,6 +54,7 @@ void Building::simulate()
     stateVector x;
     x.push_back(this->Initial.temperature);
     x.push_back(this->Initial.CO2);
+    x.push_back(this->Initial.humidity);
 
     std::vector<stateVector>    states;
     std::vector<double>         times;
@@ -59,19 +64,24 @@ void Building::simulate()
 
     std::vector<double> temperatures;
     std::vector<double> co2History;
+    std::vector<double> humidityHistory;
+
     for (const auto& state : states)
     {
         temperatures.push_back(state[0]);
         co2History.push_back(state[1]);
+        humidityHistory.push_back(state[2]);
     }
 
-    this->simTimes = QVector<double>::fromStdVector(times);
-    this->historyTemperature = QVector<double>::fromStdVector(temperatures);
-    this->historyCO2 = QVector<double>::fromStdVector(co2History);
+    this->simTimes              = QVector<double>::fromStdVector(times);
+    this->historyTemperature    = QVector<double>::fromStdVector(temperatures);
+    this->historyCO2            = QVector<double>::fromStdVector(co2History);
+    this->historyHumidity       = QVector<double>::fromStdVector(humidityHistory);
 }
 
 void Building::drawResults()
 {
     Interface::plotResults(this->simTimes, this->historyTemperature, 1);
     Interface::plotResults(this->simTimes, this->historyCO2, 3);
+    Interface::plotResults(this->simTimes, this->historyHumidity, 2);
 }

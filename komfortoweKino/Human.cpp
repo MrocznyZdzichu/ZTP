@@ -10,9 +10,14 @@ double Human::changeCO2(const double& co2, const double& cubature, const double&
     return (efficiency(co2) * airMorphSpeed * breathVolume )/ cubature;
 }
 
-double Human::changeHumidity()
+double Human::changeHumidity(const double& humidity, const double& co2,
+                             const double& temperature, const double& cubature)
 {
+    double vaporMassFlow    = efficiency(co2) * vaporizeSpeed * breathVolume * airDensity;
+    double vaporMolFlow     = vaporMassFlow / waterMolMass;
+    double dpdt             = (Rgas * (temperature + 273.15) * vaporMolFlow) / cubature;
 
+    return dpdt / maxVaporPressure(temperature);
 }
 
 double Human::changeTemperature(const double& temperature)
@@ -28,3 +33,5 @@ double Human::efficiency(const double& co2)
         eff = 0.0;
     return eff;
 }
+
+
