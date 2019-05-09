@@ -70,7 +70,7 @@ private:
     void            plotCO2(QVector<double> xData,
                             QVector<double> yData);
 
-    Limits         axisLimits(QVector<double> xData,
+    Limits          axisLimits(QVector<double> xData,
                                QVector<double> yData);
 
     void            printComm(QString text);

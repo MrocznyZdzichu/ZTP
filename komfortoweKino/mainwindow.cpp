@@ -61,8 +61,8 @@ void MainWindow::plotTemperature(QVector<double> xData, QVector<double> yData)
         tempPlot->addGraph(0);
 
     Limits limits = this->axisLimits(xData, yData);
-    tempPlot->xAxis->setLabel("time");
-    tempPlot->yAxis->setLabel("temperature");
+    tempPlot->xAxis->setLabel("Czas [s]");
+    tempPlot->yAxis->setLabel("Temperatura [degC]");
 
     tempPlot->xAxis->setRange(limits.xMin, limits.xMax);
     tempPlot->yAxis->setRange(limits.yMin, limits.yMax);
@@ -77,8 +77,8 @@ void MainWindow::plotHumidity(QVector<double> xData, QVector<double> yData)
         humPlot->addGraph(0);
 
     Limits limits = this->axisLimits(xData, yData);
-    humPlot->xAxis->setLabel("time");
-    humPlot->yAxis->setLabel("humidity");
+    humPlot->xAxis->setLabel("Czas [s]");
+    humPlot->yAxis->setLabel("Wilgotność względna");
 
     humPlot->xAxis->setRange(limits.xMin, limits.xMax);
     humPlot->yAxis->setRange(limits.yMin, limits.yMax);
@@ -94,8 +94,8 @@ void MainWindow::plotCO2(QVector<double> xData, QVector<double> yData)
         co2Plot->addGraph(0);
 
     Limits limits = this->axisLimits(xData, yData);
-    co2Plot->xAxis->setLabel("time");
-    co2Plot->yAxis->setLabel("CO2 concentration");
+    co2Plot->xAxis->setLabel("Czas [s]");
+    co2Plot->yAxis->setLabel("Stężenie CO2");
 
     co2Plot->xAxis->setRange(limits.xMin, limits.xMax);
     co2Plot->yAxis->setRange(limits.yMin, limits.yMax);
@@ -221,6 +221,12 @@ void MainWindow::on_lineEdit_2_editingFinished()
     }
     if (!isInteger)
         this->ui->lineEdit_2->setText("0");
+
+    if (std::stoi(text) == 0 && this->ui->pushButton_4->isEnabled())
+        this->ui->pushButton_4->setEnabled(0);
+
+    if (std::stoi(text) != 0 && !this->ui->pushButton_4->isEnabled())
+        this->ui->pushButton_4->setEnabled(1);
 
 }
 
