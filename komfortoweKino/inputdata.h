@@ -17,6 +17,15 @@ struct InputData
     double                      startTemperature;
     double                      startHumidity;
     double                      startCO2;
+
+    bool operator == (const InputData&)
+    {
+        bool result;
+        this->peopleCount == peopleCount ? result = true : result = false;
+
+        if (!result)
+            return result;
+    }
 };
 
 #endif // INPUTDATA_H

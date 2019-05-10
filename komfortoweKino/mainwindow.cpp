@@ -255,9 +255,8 @@ void MainWindow::on_pushButton_4_clicked()
 void MainWindow::on_pushButton_clicked()
 {
     InputData simulationParameters = Interface::getInputData();
-    Building cinema = Building(simulationParameters);
-    cinema.simulate();
-    cinema.drawResults();
+    Building& cinema = Building::get(simulationParameters);
+    cinema.startSim();
 }
 
 bool MainWindow::allFieldsFilled()

@@ -18,11 +18,65 @@ Building::Building(const InputData& Parameters):
 
     Outer(Conditions(co2conc,
                      Parameters.outerHumidity,
-                     Parameters.outerTemperature))
+                     Parameters.outerTemperature)),
+    counter(0)
 {
-    this->historyCO2.push_back(Parameters.startCO2);
-    this->historyHumidity.push_back(Parameters.startHumidity);
-    this->historyTemperature.push_back(Parameters.startTemperature);
+    this->changeComponents(Parameters);
+
+    trigger = new QTimer(this);
+    trigger->setInterval(1000);
+    connect(trigger, SIGNAL(timeout()), this, SLOT(onTimeout()));
+}
+
+void Building::simulate()
+{
+    //state vector: x[0] - temperature
+    //              x[1] - CO2 concentration
+    //              x[2] - air dampness
+    stateVector x;
+    if (counter == 60)
+    {
+        x.push_back(this->Initial.temperature);
+        x.push_back(this->Initial.CO2);
+        x.push_back(this->Initial.humidity);
+    }
+
+    else
+    {
+        x.push_back(*(this->historyTemperature.end()-1));
+        x.push_back(*(this->historyCO2.end()-1));
+        x.push_back(*(this->historyHumidity.end()-1));
+    }
+    std::vector<stateVector>    states;
+    std::vector<double>         times;
+    odeSystem system(this->cubature, airDensity, airSpecificHeat, this->HVAC_people);
+
+    size_t steps = odeint::integrate(system, x, this->counter-60, this->counter,
+                                     1, observer(states, times));
+
+    for (const auto& state : states)
+    {
+        this->historyTemperature.push_back(state[0]);
+        this->historyCO2.push_back(state[1]);
+        this->historyHumidity.push_back(state[2]);
+    }
+
+    for (const auto& timestamp : times)
+    {
+        this->simTimes.push_back(timestamp);
+    }
+}
+
+void Building::drawResults()
+{
+    Interface::plotResults(this->simTimes, this->historyTemperature, 1);
+    Interface::plotResults(this->simTimes, this->historyCO2, 3);
+    Interface::plotResults(this->simTimes, this->historyHumidity, 2);
+}
+
+void Building::changeComponents(const InputData &Parameters)
+{
+    this->HVAC_people.clear();
 
     for (int i = 0; i < Parameters.peopleCount; i++)
         this->HVAC_people.push_back(new Human());
@@ -32,12 +86,12 @@ Building::Building(const InputData& Parameters):
                                              Parameters.ventAreas[i],
                                              Parameters.ventSpeed[i]));
 
-    Vent::setOuterTemperature(this->Outer.temperature);
-    Vent::setOuterCO2(this->Outer.CO2);
-    Vent::setOuterHumidity(this->Outer.humidity);
+    Vent::setOuterTemperature(Parameters.outerTemperature);
+    Vent::setOuterCO2(co2conc);
+    Vent::setOuterHumidity(Parameters.outerHumidity);
 
-    AC::setOuterCO2(this->Outer.CO2);
-    AC::setOuterHumidity(this->Outer.humidity);
+    AC::setOuterCO2(co2conc);
+    AC::setOuterHumidity(Parameters.outerHumidity);
 
     for (int i = 0; i < Parameters.unitModes.size(); i++)
     {
@@ -45,43 +99,25 @@ Building::Building(const InputData& Parameters):
                                            Parameters.unitPowers[i]));
     }
 }
-
-void Building::simulate()
+void Building::onTimeout()
 {
-    //state vector: x[0] - temperature
-    //              x[1] - CO2 concentration
-    //              x[2] - air dampness
-    stateVector x;
-    x.push_back(this->Initial.temperature);
-    x.push_back(this->Initial.CO2);
-    x.push_back(this->Initial.humidity);
+    this->counter += 60;
 
-    std::vector<stateVector>    states;
-    std::vector<double>         times;
-    odeSystem system(this->cubature, airDensity, airSpecificHeat, this->HVAC_people);
+    InputData currentDataSet = Interface::getInputData();
 
-    size_t steps = odeint::integrate(system, x, 0, 1800, 1, observer(states, times));
+    this->changeComponents(currentDataSet);
 
-    std::vector<double> temperatures;
-    std::vector<double> co2History;
-    std::vector<double> humidityHistory;
+    this->simulate();
+    this->drawResults();
 
-    for (const auto& state : states)
-    {
-        temperatures.push_back(state[0]);
-        co2History.push_back(state[1]);
-        humidityHistory.push_back(state[2]);
-    }
-
-    this->simTimes              = QVector<double>::fromStdVector(times);
-    this->historyTemperature    = QVector<double>::fromStdVector(temperatures);
-    this->historyCO2            = QVector<double>::fromStdVector(co2History);
-    this->historyHumidity       = QVector<double>::fromStdVector(humidityHistory);
 }
 
-void Building::drawResults()
+void Building::startSim()
 {
-    Interface::plotResults(this->simTimes, this->historyTemperature, 1);
-    Interface::plotResults(this->simTimes, this->historyCO2, 3);
-    Interface::plotResults(this->simTimes, this->historyHumidity, 2);
+    this->trigger->start();
+}
+
+void Building::stopSim()
+{
+    this->trigger->stop();
 }
