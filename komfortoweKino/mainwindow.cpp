@@ -17,8 +17,6 @@ MainWindow::MainWindow(QWidget *parent) :
     ui->setupUi(this);
 
     this->ui->pushButton_3->setDisabled(1);
-    table->setRowCount(0);
-    table->setColumnCount(2);
 
     this->ui->lineEdit_2->setText("0");
     this->ui->lineEdit_3->setText("0");
@@ -33,6 +31,7 @@ MainWindow::MainWindow(QWidget *parent) :
     this->ui->lineEdit_12->setText("0");
     this->ui->pushButton_4->setEnabled(0);
     this->ui->pushButton_7->setEnabled(0);
+    this->ui->pushButton_8->setEnabled(0);
 
     for (int i = 0; i < table2->columnCount(); i++)
         table2->setColumnWidth(i, 60);
@@ -254,11 +253,19 @@ void MainWindow::on_pushButton_4_clicked()
 
 void MainWindow::on_pushButton_clicked()
 {
+    this->ui->pushButton_8->setEnabled(1);
+
     InputData simulationParameters = Interface::getInputData();
     Building& cinema = Building::get(simulationParameters);
     cinema.startSim();
 }
 
+void MainWindow::on_pushButton_8_clicked()
+{
+    this->ui->pushButton_8->setEnabled(0);
+    InputData simulationParameters = Interface::getInputData();
+    Building::get(simulationParameters).stopSim();
+}
 bool MainWindow::allFieldsFilled()
 {
     if     (this->ui->lineEdit_3->text() == "" ||
@@ -532,3 +539,5 @@ double* MainWindow::getVentSpeed()
         VentSpeed[i] = table2->item(i, 2)->text().toDouble();
     return VentSpeed;
 }
+
+

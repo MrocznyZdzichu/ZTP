@@ -35,7 +35,7 @@ private:
     QVector<double>         simTimes;
     Conditions              Initial;
     Conditions              Outer;
-    const double            cubature;
+    double                  cubature;
     QTimer*                 trigger;
     int                     counter;
 //-----------methods------------------
@@ -51,6 +51,7 @@ public:
 private:
     Building(const InputData& Parameters);
     void    changeComponents(const InputData& Parameters);
+    void    changeOuter(const InputData& Parameters);
     void    simulate();
     void    drawResults();
 

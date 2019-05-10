@@ -99,6 +99,15 @@ void Building::changeComponents(const InputData &Parameters)
                                            Parameters.unitPowers[i]));
     }
 }
+
+void Building::changeOuter(const InputData& Parameters)
+{
+    this->cubature = Parameters.cubature;
+
+    this->Outer = Conditions(co2conc,
+                     Parameters.outerHumidity,
+                     Parameters.outerTemperature);
+}
 void Building::onTimeout()
 {
     this->counter += 60;
@@ -106,6 +115,7 @@ void Building::onTimeout()
     InputData currentDataSet = Interface::getInputData();
 
     this->changeComponents(currentDataSet);
+    this->changeOuter(currentDataSet);
 
     this->simulate();
     this->drawResults();

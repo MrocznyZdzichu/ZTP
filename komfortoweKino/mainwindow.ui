@@ -40,10 +40,10 @@ p, li { white-space: pre-wrap; }
    <widget class="QPushButton" name="pushButton">
     <property name="geometry">
      <rect>
-      <x>400</x>
+      <x>390</x>
       <y>560</y>
-      <width>160</width>
-      <height>25</height>
+      <width>100</width>
+      <height>21</height>
      </rect>
     </property>
     <property name="text">
@@ -247,7 +247,7 @@ klimatyzatora</string>
       <x>400</x>
       <y>410</y>
       <width>161</width>
-      <height>41</height>
+      <height>43</height>
      </rect>
     </property>
     <layout class="QVBoxLayout" name="verticalLayout_2">
@@ -519,6 +519,19 @@ wentylacji</string>
      </property>
     </column>
    </widget>
+   <widget class="QPushButton" name="pushButton_8">
+    <property name="geometry">
+     <rect>
+      <x>495</x>
+      <y>560</y>
+      <width>100</width>
+      <height>21</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Pauza</string>
+    </property>
+   </widget>
   </widget>
   <widget class="QMenuBar" name="menuBar">
    <property name="geometry">
@@ -526,7 +539,7 @@ wentylacji</string>
      <x>0</x>
      <y>0</y>
      <width>1200</width>
-     <height>21</height>
+     <height>20</height>
     </rect>
    </property>
   </widget>
