@@ -7,9 +7,20 @@
 
 
 typedef std::vector<double> stateVector;
+/*!
+ * \brief Class packaging Ordinary Differential Equation solved by Boost's odeint.
+ * Solving itself is performed by calling operator ()/
+ */
 class odeSystem
 {
 public:
+    /*!
+     * \brief Constructor setting up ode parameters/
+     * \param cubature Room's volume in m3.
+     * \param density Air density: constant = 1.2 kg/m3
+     * \param specificHeat Air specific heat: constant = 1005 J/kgK
+     * \param building_HVAC_people Vector of state-changing objects in room.
+     */
     odeSystem(double cubature, double density, double specificHeat,
                    QVector<Component*> building_HVAC_people);
 

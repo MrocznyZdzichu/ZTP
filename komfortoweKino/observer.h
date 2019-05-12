@@ -3,6 +3,9 @@
 
 #include <vector>
 typedef std::vector<double> stateVector;
+/*!
+ * \brief Structure used to read and store values and timestamp in each integration step during ODE solving.
+ */
 struct observer
 {
     std::vector<stateVector>& states;

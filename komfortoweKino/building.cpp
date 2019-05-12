@@ -114,8 +114,8 @@ void Building::onTimeout()
 
     InputData currentDataSet = Interface::getInputData();
 
-    this->changeComponents(currentDataSet);
     this->changeOuter(currentDataSet);
+    this->changeComponents(currentDataSet);
 
     this->simulate();
     this->drawResults();

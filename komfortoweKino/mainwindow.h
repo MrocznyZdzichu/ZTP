@@ -4,11 +4,15 @@
 #include <QMainWindow>
 #include "qcustomplot.h"
 #include "building.h"
-
+/*!
+ * \brief Structure used to comfortable pack minimal and maximal value of xData and yData
+ * used to plot charts by Interface method.
+ */
 struct Limits
 {
     double xMin, xMax, yMin, yMax;
 };
+
 
 namespace Ui {
 class MainWindow;

@@ -1,11 +1,6 @@
 #include "Interface.h"
 
 MainWindow *Interface::appWindow;
-Interface Interface::getInstance()
-{
-    static Interface instance;
-    return instance;
-}
 
 Interface::Interface()
 {
